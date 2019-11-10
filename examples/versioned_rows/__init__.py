@@ -1,4 +1,6 @@
 """
+带有版本的行:
+
 Several examples that illustrate the technique of intercepting changes
 that would be first interpreted as an UPDATE on a row, and instead turning
 it into an INSERT of a new row, leaving the previous row intact as

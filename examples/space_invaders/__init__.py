@@ -1,4 +1,6 @@
 """
+太空侵略者游戏 - SQLite + Python3 实现
+
 A Space Invaders game using SQLite as the state machine.
 
 Originally developed in 2012.  Adapted to work in Python 3.

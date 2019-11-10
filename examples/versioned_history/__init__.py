@@ -1,4 +1,6 @@
 """
+版本记录
+
 Illustrates an extension which creates version tables for entities and stores
 records for each change. The given extensions generate an anonymous "history"
 class which represents historical versions of the target object.

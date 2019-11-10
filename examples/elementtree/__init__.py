@@ -1,4 +1,8 @@
 """
+说明了用于持久化和查询XML的三种策略
+关系树中ElementTree表示的文档数据库。
+
+
 Illustrates three strategies for persisting and querying XML
 documents as represented by ElementTree in a relational
 database. The techniques do not apply any mappings to the

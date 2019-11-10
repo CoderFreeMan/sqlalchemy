@@ -1,5 +1,5 @@
 """
-Illustrates "vertical table" mappings.
+Illustrates "vertical table - 垂直表" mappings.
 
 A "vertical table" refers to a technique where individual attributes
 of an object are stored as distinct rows in a table. The "vertical

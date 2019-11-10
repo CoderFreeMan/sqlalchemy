@@ -1,4 +1,7 @@
-"""A naive example illustrating techniques to help
+"""
+PostGIS 技术 - Postgres 数据库空间管理的一个扩展
+
+A naive example illustrating techniques to help
 embed PostGIS functionality.
 
 This example was originally developed in the hopes that it would be

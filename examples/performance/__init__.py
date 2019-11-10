@@ -1,4 +1,7 @@
-"""A performance profiling suite for a variety of SQLAlchemy use cases.
+"""
+性能分析套件
+
+A performance profiling suite for a variety of SQLAlchemy use cases.
 
 Each suite focuses on a specific use case with a particular performance
 profile and associated implications:

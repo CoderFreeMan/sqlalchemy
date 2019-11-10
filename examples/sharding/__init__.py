@@ -1,4 +1,7 @@
-"""A basic example of using the SQLAlchemy Sharding API.
+"""
+分库分表技术 - 横向扩展多个数据库的示例
+
+A basic example of using the SQLAlchemy Sharding API.
 Sharding refers to horizontally scaling data across multiple
 databases.
 

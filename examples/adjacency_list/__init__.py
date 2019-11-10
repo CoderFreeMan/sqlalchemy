@@ -1,4 +1,6 @@
 """
+字典结构邻接表模型
+
 An example of a dictionary-of-dictionaries structure mapped using
 an adjacency list model.
 

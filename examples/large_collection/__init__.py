@@ -1,4 +1,7 @@
-"""Large collection example.
+"""
+大集合示例
+
+Large collection example.
 
 Illustrates the options to use with
 :func:`~sqlalchemy.orm.relationship()` when the list of related
