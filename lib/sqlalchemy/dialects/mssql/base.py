@@ -1612,7 +1612,10 @@ class MSSQLCompiler(compiler.SQLCompiler):
         if select._distinct:
             s += "DISTINCT "
 
-        if select._simple_int_limit and not select._offset:
+        if select._simple_int_limit and (
+            select._offset_clause is None
+            or (select._simple_int_offset and select._offset == 0)
+        ):
             # ODBC drivers and possibly others
             # don't support bind params in the SELECT clause on SQL Server.
             # so have to use literal here.
@@ -1942,13 +1945,15 @@ class MSSQLStrictCompiler(MSSQLCompiler):
 
 class MSDDLCompiler(compiler.DDLCompiler):
     def get_column_specification(self, column, **kwargs):
-        colspec = (
-            self.preparer.format_column(column)
-            + " "
-            + self.dialect.type_compiler.process(
+        colspec = self.preparer.format_column(column)
+
+        # type is not accepted in a computed column
+        if column.computed is not None:
+            colspec += " " + self.process(column.computed)
+        else:
+            colspec += " " + self.dialect.type_compiler.process(
                 column.type, type_expression=column
             )
-        )
 
         if column.nullable is not None:
             if (
@@ -1958,7 +1963,8 @@ class MSDDLCompiler(compiler.DDLCompiler):
                 or column.autoincrement is True
             ):
                 colspec += " NOT NULL"
-            else:
+            elif column.computed is None:
+                # don't specify "NULL" for computed columns
                 colspec += " NULL"
 
         if column.table is None:
@@ -2108,6 +2114,15 @@ class MSDDLCompiler(compiler.DDLCompiler):
             self.preparer.quote(c.name) for c in constraint
         )
         text += self.define_constraint_deferrability(constraint)
+        return text
+
+    def visit_computed_column(self, generated):
+        text = "AS (%s)" % self.sql_compiler.process(
+            generated.sqltext, include_table=False, literal_binds=True
+        )
+        # explicitly check for True|False since None means server default
+        if generated.persisted is True:
+            text += " PERSISTED"
         return text
 
 
